@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@mdit-vue/plugin-frontmatter": "^3.0.2",
+    "@tsparticles/all": "^3.9.1",
+    "@tsparticles/engine": "^3.9.1",
     "markdown-it": "^14.1.1",
     "vue": "^3.5.32",
     "vue-router": "5"

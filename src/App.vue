@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
@@ -15,21 +16,17 @@
       </RouterLink>
     </nav>
     <RouterView v-slot="{ Component }">
-      <Transition mode="out-in">
-        <template v-if="Component">
-          <KeepAlive>
-            <Suspense>
-              <!-- main content -->
-              <component :is="Component" />
+      <template v-if="Component">
+        <Suspense>
+          <!-- main content -->
+          <component :is="Component" />
 
-              <!-- loading state -->
-              <template #fallback>
-                Loading...
-              </template>
-            </Suspense>
-          </KeepAlive>
-        </template>
-      </Transition>
+          <!-- loading state -->
+          <template #fallback>
+            Loading...
+          </template>
+        </Suspense>
+      </template>
     </RouterView>
   </div>
 </template>
