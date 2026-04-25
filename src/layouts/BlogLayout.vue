@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { MarkdownEnv } from '../types'
 import { computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { useMarkdown } from '../composables/markdown'
 
 const { markdown } = useMarkdown()
