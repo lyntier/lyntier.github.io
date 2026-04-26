@@ -38,31 +38,27 @@ const sortedToc = computed(() => {
   })
 })
 
-function getImageUrl(name: string) {
-  return new URL(`../assets/blog/${name}.png`, import.meta.url)
-}
 function goToPage(name: string) {
   router.push(`/blog/${name}`)
 }
 </script>
 
 <template>
-  <div class="p-10 ">
+  <div class="p-10">
     <div
       v-for="item in sortedToc"
       :key="item.name"
-      class="h-70 mt-10 p-5 cursor-pointer hover:scale-105 transition-transform duration-200"
-      :style="{ background: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url(${getImageUrl(item.name)})` }"
+      class="mt-10 p-5 cursor-pointer hover:scale-105 transition-transform duration-200 bg-[var(--ctp-mocha-flamingo)]"
       @click="goToPage(item.name)"
     >
-      <div class="w-xl m-auto text-left">
+      <div class="m-auto text-left">
         <h1 class="mb-4">
           {{ item.frontmatter.title }}
         </h1>
         <h2>
           {{ item.frontmatter.description }}
         </h2>
-        <p class="text-white pt-5">
+        <p class="pt-5 text-[var(--ctp-mocha-base)]">
           {{ item.frontmatter.date.toLocaleDateString() }}
         </p>
       </div>

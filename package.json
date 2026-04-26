@@ -18,6 +18,8 @@
     "vue-router": "5"
   },
   "devDependencies": {
+    "@catppuccin/palette": "^1.8.0",
+    "@iconify-json/basil": "^1.2.4",
     "@iconify-json/carbon": "^1.2.20",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^24.12.2",

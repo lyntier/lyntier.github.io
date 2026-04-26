@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import type { MarkdownEnv } from '../types'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useMarkdown } from '../composables/markdown'
 
-const { markdown } = useMarkdown()
 const route = useRoute()
+const router = useRouter()
+const { markdown } = useMarkdown()
 
 const md = (await import(`../assets/blog/${route.params.page}.md?raw`)).default
 
@@ -12,29 +13,36 @@ const env = {} as MarkdownEnv
 
 const rendered = markdown.render(md, env)
 
-const imageUrl = new URL(`../assets/blog/${route.params.page}.png`, import.meta.url)
-
 function goUp() {
   window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+function goBack() {
+  router.push('/blog')
 }
 </script>
 
 <template>
   <div class="pt-5 text-left">
-    <div class="pt-5 pb-5" :style="{ background: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url(${imageUrl})` }">
+    <div class="mt-5 pb-5 pl-2 pt-2 bg-[var(--ctp-mocha-flamingo)]">
       <div>
-        <h1 class="w-lg mt-0 mb-0 ml-48">
+        <div class="absolute bg-[var(--ctp-mocha-base)]">
+          <div class="w-16 h-16 i-basil-arrow-left-solid cursor-pointer text-[var(--ctp-mocha-flamingo)]" @click="goBack" />
+        </div>
+        <h1 class="mt-0 mb-0 ml-20">
           {{ env.frontmatter.title }}
         </h1>
-        <h2 class="w-md m-auto pt-8">
+        <h2 class="ml-8 pt-8">
           {{ env.frontmatter.description }}
         </h2>
       </div>
     </div>
-    <div class="w-2xl m-auto pl-5 pt-5 italic font-600">
-      Written on {{ env.frontmatter.date.toLocaleDateString() }}.
+    <div class="m-auto pl-5 pt-5 italic font-600">
+      <span>Written on {{ env.frontmatter.date.toLocaleDateString() }}.</span>
     </div>
-    <div class="w-2xl m-auto pl-5 pr-5 pb-5 [&_p]:(pt-4 pb-2) [&_em]:text-rose-300" v-html="rendered" />
-    <div class="w-10 h-10 i-carbon:arrow-up bg-blue m-auto mb-16 cursor-pointer" @click="goUp" />
+    <div class=" m-auto p-5 pt-0">
+      <div class="[&_em]:text-[var(--ctp-mocha-flamingo)] [&_p]:(pt-4 pb-2)" v-html="rendered" />
+    </div>
+    <div class="w-10 h-10 i-basil-arrow-up-solid text-[var(--ctp-mocha-flamingo)] m-auto mb-16 cursor-pointer" @click="goUp" />
   </div>
 </template>

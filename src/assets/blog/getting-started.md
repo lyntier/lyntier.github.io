@@ -1,5 +1,5 @@
 ---
-title: Burnouts and the dream of something better
+title: The dream of something better
 description: What's next?
 date: 2026-04-24
 ---

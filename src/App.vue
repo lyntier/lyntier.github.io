@@ -1,27 +1,24 @@
 <script setup lang="ts">
-
+import NavItem from './components/NavItem.vue'
 </script>
 
 <template>
   <div>
-    <nav class="h-10 line-height-10 list-none flex [&>*]:flex-grow [&>.router-link-active]:bg-blue [&>.router-link-active]:text-white [&>:hover]:bg-blue-600 [&>:hover]:text-white">
-      <RouterLink to="/">
+    <nav class="flex h-10 [&>*]:(flex-grow line-height-10)">
+      <NavItem to="/">
         Home
-      </RouterLink>
-      <RouterLink to="/blog">
+      </NavItem>
+      <NavItem to="/blog">
         Blog
-      </RouterLink>
-      <RouterLink to="/games">
+      </NavItem>
+      <NavItem to="/games">
         Games
-      </RouterLink>
+      </NavItem>
     </nav>
     <RouterView v-slot="{ Component }">
       <template v-if="Component">
         <Suspense>
-          <!-- main content -->
-          <component :is="Component" />
-
-          <!-- loading state -->
+          <component :is="Component" class="max-w-2xl m-auto" />
           <template #fallback>
             Loading...
           </template>
